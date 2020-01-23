@@ -3,3 +3,4 @@ __pycache__/
 *$py.class
 
 airflow.db*
+*airflow.db*
