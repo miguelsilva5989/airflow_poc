@@ -1,9 +1,14 @@
 # Airflow PoC
 
-## Docker MariaDB
+## Docker Postresql
 
-* https://hub.docker.com/r/bitnami/mariadb/
-* https://github.com/bitnami/bitnami-docker-mariadb
+https://github.com/bitnami/bitnami-docker-postgresql
+docker pull bitnami/postgresql:latest
+
+As PostgreSQL image is non-root, you need to set the proper permissions to the mounted directory in your host:
+    sudo chown 1001:1001 /home/mike/workspace/git/airflow_poc/airflow_poc/db
+
+Check IP address
 
     docker ps
     docker inspect <container-id>
@@ -11,7 +16,7 @@
 
 Connect to DB
 
-    mysql -h 172.18.0.2 -uroot -pzeManel mysql
+    172.18.0.2
 
 ## Airflow Installation
 
@@ -22,6 +27,9 @@ Connect to DB
 
     # install from pypi using pip
     pip install apache-airflow
+
+    # configure DB sqlalchemy connection string to postgresql in airflow.cfg
+    sql_alchemy_conn = postgresql://ze:zeManel@172.18.0.2:5432/postgresql
 
     # initialize the database
     airflow initdb

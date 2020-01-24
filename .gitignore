@@ -4,3 +4,5 @@ __pycache__/
 
 airflow.db*
 *airflow.db*
+
+logs/
