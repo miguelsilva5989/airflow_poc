@@ -1,0 +1,16 @@
+version: '2'
+
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  mariadb:
+    image: 'bitnami/mariadb:latest'
+    environment:
+      - MARIADB_ROOT_USER=root
+      - MARIADB_ROOT_PASSWORD=zeManel
+    networks:
+      - app-tier
+    volumes:
+      - /home/mike/workspace/git/airflow_poc/airflow_poc/db:/bitnami/mariadb

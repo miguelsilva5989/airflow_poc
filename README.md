@@ -1,37 +1,60 @@
-# airflow needs a home, ~/airflow is the default,
-# but you can lay foundation somewhere else if you prefer
-# (optional)
-export AIRFLOW_HOME=~/airflow
+# Airflow PoC
 
-# install from pypi using pip
-pip3.7 install apache-airflow
+## Docker MariaDB
 
-# initialize the database
-airflow initdb
+* https://hub.docker.com/r/bitnami/mariadb/
+* https://github.com/bitnami/bitnami-docker-mariadb
 
-# start the web server, default port is 8080
-airflow webserver -p 8080
+    docker ps
+    docker inspect <container-id>
+    copy the ipaddress
 
-# start the scheduler
-airflow scheduler
+Connect to DB
 
-# visit localhost:8080 in the browser and enable the example dag in the home page
+    mysql -h 172.18.0.2 -uroot -pzeManel mysql
+
+## Airflow Installation
+
+    # airflow needs a home, ~/airflow is the default,
+    # but you can lay foundation somewhere else if you prefer
+    # (optional)
+    export AIRFLOW_HOME=~/airflow
+
+    # install from pypi using pip
+    pip install apache-airflow
+
+    # initialize the database
+    airflow initdb
+
+    # start the web server, default port is 8080
+    airflow webserver -p 8080
+
+    # start the scheduler
+    airflow scheduler
+
+Web
+
+    visit localhost:8080 in the browser and enable the example dag in the home page
 
 
 # print the list of active DAGs
-airflow list_dags
+
+    airflow list_dags
 
 # prints the list of tasks the "tutorial" dag_id
-airflow list_tasks tutorial
+
+    airflow list_tasks tutorial
 
 # prints the hierarchy of tasks in the tutorial DAG
-airflow list_tasks tutorial --tree
+
+    airflow list_tasks tutorial --tree
 
 
 ## testing
-airflow test tutorial print_date 2015-06-01
-airflow test tutorial sleep 2015-06-01
-airflow test tutorial templated 2015-06-01
+
+    airflow test tutorial print_date 2015-06-01
+    airflow test tutorial sleep 2015-06-01
+    airflow test tutorial templated 2015-06-01
 
 
 hide example DAGs, change in config:
